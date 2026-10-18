@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fixed Header và Fixed Footer</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 78px;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            color: #263238;
+            background-color: #f4f7fb;
+            line-height: 1.6;
+        }
+
+        /* Header được cố định ở đầu màn hình */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 0 7%;
+            background-color: #263238;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.18);
+        }
+
+        .brand {
+            flex-shrink: 0;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-decoration: none;
+            letter-spacing: 0.3px;
+            padding: 17px 0;
+        }
+
+        .nav-links {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            display: block;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 19px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            transition: background-color 0.2s ease, color 0.2s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:focus {
+            background-color: #00a896;
+            color: #ffffff;
+            outline: none;
+        }
+
+        /* Chừa khoảng trống cho header và footer cố định */
+        main {
+            padding: 100px 7% 100px;
+            min-height: 100vh;
+        }
+
+        .hero {
+            padding: 42px 36px;
+            border-radius: 18px;
+            color: white;
+            background: linear-gradient(120deg, #007f79, #00a896);
+            box-shadow: 0 10px 25px rgba(0, 127, 121, 0.18);
+        }
+
+        .hero h1 {
+            margin-top: 0;
+            margin-bottom: 12px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.2;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin-bottom: 0;
+            font-size: 1.08rem;
+        }
+
+        .section-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 26px;
+        }
+
+        .content-card {
+            scroll-margin-top: 85px;
+            padding: 25px;
+            background: #ffffff;
+            border-radius: 14px;
+            border: 1px solid #e1e8ed;
+            box-shadow: 0 5px 18px rgba(38, 50, 56, 0.06);
+        }
+
+        .content-card h2 {
+            margin-top: 0;
+            color: #007f79;
+        }
+
+        .content-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .tip {
+            margin-top: 24px;
+            padding: 18px 20px;
+            background: #e3f6f4;
+            border-left: 5px solid #00a896;
+            border-radius: 8px;
+        }
+
+        .tip strong {
+            color: #006b66;
+        }
+
+        /* Footer được cố định ở cuối màn hình */
+        .footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            z-index: 1000;
+            width: 100%;
+            padding: 13px 7%;
+            color: #eaf4f4;
+            background-color: #1f2b30;
+            text-align: center;
+            box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.12);
+            font-size: 0.9rem;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                padding: 0 4%;
+                align-items: flex-start;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .brand {
+                padding: 10px 0 4px;
+            }
+
+            .nav-links {
+                width: 100%;
+            }
+
+            .nav-links a {
+                flex: 1 1 auto;
+                padding: 10px 9px;
+                font-size: 14px;
+            }
+
+            main {
+                padding: 132px 4% 95px;
+            }
+
+            .hero {
+                padding: 28px 23px;
+            }
+
+            .section-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .footer {
+                padding: 10px 4%;
+                font-size: 0.8rem;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            * {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="navbar" id="home">
+        <a class="brand" href="#home">Fixed Menu Demo</a>
+        <nav class="nav-links" aria-label="Menu điều hướng chính">
+            <a href="#home">Home</a>
+            <a href="#news">News</a>
+            <a href="#contact">Contact</a>
+            <a href="#about">About</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero" aria-labelledby="main-title">
+            <h1 id="main-title">Fixed Top Menu</h1>
+            <p>Cuộn trang lên hoặc xuống để thấy thanh điều hướng luôn nằm ở đầu màn hình. Footer cũng được cố định ở cuối màn hình.</p>
+        </section>
+
+        <div class="section-grid">
+            <section class="content-card" id="news">
+                <h2><i aria-hidden="true">▸</i> News</h2>
+                <p>Đây là khu vực nội dung tin tức. Thanh menu phía trên vẫn giữ nguyên vị trí trong khi bạn cuộn trang.</p>
+                <p>Thiết kế fixed header giúp người dùng truy cập menu nhanh chóng mà không cần quay lại đầu trang.</p>
+            </section>
+
+            <section class="content-card" id="contact">
+                <h2><i aria-hidden="true">▸</i> Contact</h2>
+                <p>Đây là khu vực liên hệ. Bạn có thể đặt thông tin email, số điện thoại hoặc biểu mẫu liên hệ tại đây.</p>
+                <p>Trong bài thực hành này, phần liên hệ dùng nội dung mẫu để tập trung vào cách bố trí header và footer.</p>
+            </section>
+
+            <section class="content-card" id="about">
+                <h2><i aria-hidden="true">▸</i> About</h2>
+                <p>Trang minh họa cách sử dụng CSS <code>position: fixed</code> để giữ một phần tử tại vị trí cố định trong khung nhìn.</p>
+                <p>Thuộc tính <code>top: 0</code> đặt header ở trên cùng, còn <code>bottom: 0</code> đặt footer ở dưới cùng.</p>
+            </section>
+
+            <section class="content-card">
+                <h2><i aria-hidden="true">▸</i> Thực hành cuộn trang</h2>
+                <p>Nội dung bên dưới được thêm vào để tạo chiều dài trang và cho phép kiểm tra hiệu ứng cố định.</p>
+                <p>Hãy thử nhấn các mục trong menu để di chuyển đến các khu vực tương ứng.</p>
+            </section>
+        </div>
+
+        <div class="tip">
+            <strong>Ghi nhớ:</strong> Header và footer dùng <code>position: fixed</code> nên được tách khỏi luồng bố cục thông thường. Vì vậy, cần thêm khoảng đệm cho nội dung để chúng không bị che khuất.
+        </div>
+
+        <section class="content-card" style="margin-top: 24px;">
+            <h2>Nội dung bổ sung</h2>
+            <p>Đoạn văn mẫu 1: Fixed menu thường được dùng khi trang web có nhiều nội dung và người dùng cần điều hướng thường xuyên.</p>
+            <p>Đoạn văn mẫu 2: Màu nền, khoảng cách và hiệu ứng khi rê chuột có thể tùy chỉnh bằng CSS để phù hợp với thiết kế của website.</p>
+            <p>Đoạn văn mẫu 3: Trên màn hình nhỏ, menu được bố trí lại để dễ sử dụng trên điện thoại.</p>
+            <p>Đoạn văn mẫu 4: Tiếp tục cuộn trang. Bạn sẽ thấy header và footer vẫn luôn ở vị trí cố định.</p>
+            <p>Đoạn văn mẫu 5: Có thể thay thế nội dung mẫu này bằng thông tin thực tế trong một dự án sau này.</p>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© <span id="year">2026</span> Fixed Menu Demo · Thực hành HTML &amp; CSS</p>
+    </footer>
+
+    <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
